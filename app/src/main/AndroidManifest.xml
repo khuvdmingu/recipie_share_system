@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.mosquito.zap">
+    package="com.hm.zwap">
 
     <application
         android:allowBackup="true"
@@ -12,7 +12,7 @@
         android:usesCleartextTraffic="true">
 
         <activity
-            android:name="com.mosquito.zap.MainActivity"
+            android:name="com.hm.zwap.MainActivity"
             android:label="@string/app_name"
             android:exported="true"
             android:screenOrientation="portrait">
@@ -22,7 +22,15 @@
             </intent-filter>
         </activity>
         <activity
-            android:name="com.mosquito.zap.ActivityWebView"
+            android:name="com.hm.zwap.ActivityWebView"
+            android:screenOrientation="portrait">
+        </activity>
+        <activity
+            android:name="com.hm.zwap.ChipFilter"
+            android:screenOrientation="portrait">
+        </activity>
+        <activity
+            android:name="com.hm.zwap.RecipieContentActivity"
             android:screenOrientation="portrait">
         </activity>
     </application>
