@@ -110,4 +110,16 @@
         tools:listitem="@layout/item_people_chat"
         android:background="#FFF"/>
 
+    <Button
+        android:id="@+id/createBtn"
+        android:layout_width="match_parent"
+        android:layout_marginHorizontal="20dp"
+        android:background="@drawable/border"
+        android:backgroundTint="@color/colorPrimary"
+        android:textColor="#ffffff"
+        android:layout_height="wrap_content"
+        android:text="조합만들기"
+        android:layout_gravity="bottom"
+        android:layout_marginBottom="30dp"/>
+
 </androidx.coordinatorlayout.widget.CoordinatorLayout>
