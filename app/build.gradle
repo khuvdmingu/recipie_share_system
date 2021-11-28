@@ -49,4 +49,7 @@ dependencies {
     implementation 'com.github.bumptech.glide:glide:3.7.0'
     implementation 'com.google.code.gson:gson:2.8.9'
 
+    implementation 'com.asksira.android:dropdownview:1.1.1'
+    implementation 'com.andkulikov:transitionseverywhere:2.1.0'
+
 }
