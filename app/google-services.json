@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "809651859421",
+    "firebase_url": "https://zapzap-5ce2a-default-rtdb.firebaseio.com",
+    "project_id": "zapzap-5ce2a",
+    "storage_bucket": "zapzap-5ce2a.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:809651859421:android:9ec32ac6e79fb922d7d034",
+        "android_client_info": {
+          "package_name": "com.hm.zwap"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "809651859421-rt28ri9nodm4mauru5p0p6f8fqnug32g.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyB1kZqcQHOa42xnTMxnQ9hfmIChIyDSxGI"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "809651859421-rt28ri9nodm4mauru5p0p6f8fqnug32g.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

@@ -5,6 +5,7 @@
       <map>
         <entry key="app/src/main/res/drawable/border.xml" value="0.22037037037037038" />
         <entry key="app/src/main/res/drawable/color_cursor.xml" value="0.22037037037037038" />
+        <entry key="app/src/main/res/layout/activity_chip_filter.xml" value="0.14387031408308004" />
         <entry key="app/src/main/res/layout/activity_grid_caller.xml" value="0.24464353115435833" />
         <entry key="app/src/main/res/layout/activity_main.xml" value="0.14387031408308004" />
         <entry key="app/src/main/res/layout/activity_profile_wallet.xml" value="0.335" />

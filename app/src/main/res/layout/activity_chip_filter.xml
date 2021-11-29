@@ -1,0 +1,192 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@android:color/white"
+    android:fitsSystemWindows="true"
+    android:orientation="vertical"
+    android:theme="@style/AppTheme.Material">
+
+    <androidx.core.widget.NestedScrollView
+        android:id="@+id/nested_scroll_view"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:scrollbars="none"
+        android:scrollingCache="true">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/spacing_large"
+                android:text="조합 제목"
+                android:textAppearance="@style/TextAppearance.MaterialComponents.Headline6"
+                android:textColor="@color/colorPrimary" />
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/input_layout_username"
+                style="@style/Widget.MaterialComponents.TextInputLayout.FilledBox"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="조합제목"
+                app:placeholderText="트윅스 프라푸치노"
+                app:boxBackgroundColor="@color/transparent"
+                app:errorEnabled="true"
+                app:errorIconDrawable="@drawable/ic_error"
+                app:errorIconTint="@color/colorPrimary"
+                app:helperText="*필수항목">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/input_text_title"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text=""/>
+
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/spacing_large"
+                android:text="브랜드 선택"
+                android:textAppearance="@style/TextAppearance.MaterialComponents.Headline6"
+                android:textColor="@color/colorPrimary" />
+
+            <com.google.android.material.chip.ChipGroup
+                android:id="@+id/brand_chip_group"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="@dimen/spacing_middle"
+                app:singleSelection="true">
+
+
+            </com.google.android.material.chip.ChipGroup>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/spacing_large"
+                android:text="베이스"
+                android:textAppearance="@style/TextAppearance.MaterialComponents.Headline6"
+                android:textColor="@color/colorPrimary" />
+
+            <com.google.android.material.chip.ChipGroup
+                android:id="@+id/category_chip_group"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="@dimen/spacing_middle"
+                app:singleSelection="false">
+
+
+            </com.google.android.material.chip.ChipGroup>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="@dimen/spacing_large"
+                android:orientation="horizontal">
+
+
+                <LinearLayout
+                    android:id="@+id/list_holder"
+                    android:layout_width="0dp"
+                    android:layout_weight="6"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+
+
+                </LinearLayout>
+
+                <RadioGroup
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:id="@+id/radio_holder"
+                    android:orientation="vertical"
+                    android:layout_height="wrap_content">
+
+                </RadioGroup>
+
+            </LinearLayout>
+
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/spacing_large"
+                android:text="옵션"
+                android:textAppearance="@style/TextAppearance.MaterialComponents.Headline6"
+                android:textColor="@color/colorPrimary" />
+
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingHorizontal="@dimen/spacing_large"
+                android:orientation="horizontal">
+
+
+                <LinearLayout
+                    android:id="@+id/option_holder"
+                    android:layout_width="0dp"
+                    android:layout_weight="2"
+                    android:layout_gravity="start"
+                    android:gravity="start"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+
+                </LinearLayout>
+
+                <View
+                    android:layout_width="0dp"
+                    android:layout_height="0dp"
+                    android:layout_weight="1"/>
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:layout_gravity="end"
+                    android:gravity="end"
+
+                    android:id="@+id/checkBox_holder"
+                    android:orientation="vertical"
+                    android:layout_height="wrap_content">
+
+                </LinearLayout>
+
+
+
+
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="@dimen/spacing_large"
+                android:orientation="vertical"
+                android:id="@+id/option_wrapper">
+
+            </LinearLayout>
+
+            <Button
+                android:id="@+id/create_recipie"
+                android:layout_width="match_parent"
+                android:layout_marginHorizontal="20dp"
+                android:background="@drawable/border"
+                android:backgroundTint="@color/colorPrimary"
+                android:textColor="#ffffff"
+                android:layout_height="wrap_content"
+                android:text="조합생성"
+                android:layout_gravity="bottom"
+                android:layout_marginBottom="30dp"/>
+
+        </LinearLayout>
+
+    </androidx.core.widget.NestedScrollView>
+
+</LinearLayout>
