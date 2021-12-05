@@ -6,7 +6,6 @@ import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.util.Log;
-import android.view.Gravity;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
@@ -21,8 +20,6 @@ import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.asksira.dropdownview.DropDownView;
-import com.asksira.dropdownview.OnDropDownSelectionListener;
 import com.google.android.material.chip.Chip;
 import com.google.android.material.chip.ChipGroup;
 import com.google.android.material.textfield.TextInputEditText;
@@ -41,7 +38,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-public class RecipieCreateActivity extends AppCompatActivity {
+public class RecipieCreateOthersActivity extends AppCompatActivity {
     DatabaseReference reference;
     FirebaseDatabase database;
     DataSnapshot mainSnapshot;
@@ -77,7 +74,6 @@ public class RecipieCreateActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 firebasePush();
-                finish();
             }
         });
     }
@@ -134,7 +130,7 @@ public class RecipieCreateActivity extends AppCompatActivity {
                 mainSnapshot = dataSnapshot;
                 for(DataSnapshot dataSnapshot1 : dataSnapshot.getChildren()){
 
-                    Chip chip = new Chip(RecipieCreateActivity.this);
+                    Chip chip = new Chip(RecipieCreateOthersActivity.this);
                     chip.setText(dataSnapshot1.child("name").getValue().toString());
                     Log.d("TAG1", "onDataChange: " + dataSnapshot1.child("name").getValue().toString());
                     LinearLayout.LayoutParams layoutParams = new LinearLayout.LayoutParams(
@@ -201,7 +197,7 @@ public class RecipieCreateActivity extends AppCompatActivity {
                 for(DataSnapshot dataSnapshot1 : dataSnapshot.getChildren()){
                     if (!dataSnapshot1.getKey().equals("O")) {
 
-                        Chip chip = new Chip(RecipieCreateActivity.this);
+                        Chip chip = new Chip(RecipieCreateOthersActivity.this);
                         Log.d("TAG2", "onDataChange: " + dataSnapshot1.child("name").getValue().toString());
                         LinearLayout.LayoutParams layoutParams = new LinearLayout.LayoutParams(
                                 LinearLayout.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.WRAP_CONTENT);
@@ -238,7 +234,7 @@ public class RecipieCreateActivity extends AppCompatActivity {
         option_holder.removeAllViews();
         checkbox_holder.removeAllViews();
         for(DataSnapshot dataSnapshot1 : dataSnapshot.getChildren()){
-            RadioButton radioButton = new RadioButton(RecipieCreateActivity.this);
+            RadioButton radioButton = new RadioButton(RecipieCreateOthersActivity.this);
             radioButton.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
                 @Override
                 public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
@@ -252,7 +248,7 @@ public class RecipieCreateActivity extends AppCompatActivity {
             });
 
             radioButton.setButtonTintList(colorStateList); // set the color tint lis
-            TextView tv = new TextView(RecipieCreateActivity.this);
+            TextView tv = new TextView(RecipieCreateOthersActivity.this);
             LinearLayout.LayoutParams layoutParams = new LinearLayout.LayoutParams(
                     LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT);
             layoutParams.setMargins(20, 10, 10, 10); //substitute parameters for left, top, right, bottom
@@ -291,19 +287,19 @@ public class RecipieCreateActivity extends AppCompatActivity {
         if (object instanceof List) {
             List<String> list = new ArrayList<>();
             Log.d("옵션 리스트", "addOptionView: " + object.toString());
-            RadioGroup radioGroup = new RadioGroup(RecipieCreateActivity.this);
-            LinearLayout ll = new LinearLayout(RecipieCreateActivity.this);
+            RadioGroup radioGroup = new RadioGroup(RecipieCreateOthersActivity.this);
+            LinearLayout ll = new LinearLayout(RecipieCreateOthersActivity.this);
             ll.setOrientation(LinearLayout.VERTICAL);
             ll.setLayoutParams(new LinearLayout.LayoutParams(0, ViewGroup.LayoutParams.WRAP_CONTENT, 6));
             radioGroup.setLayoutParams(new LinearLayout.LayoutParams(0, ViewGroup.LayoutParams.WRAP_CONTENT, 1));
-            RadioButton rd = new RadioButton(RecipieCreateActivity.this);
+            RadioButton rd = new RadioButton(RecipieCreateOthersActivity.this);
             rd.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
                 @Override
                 public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
                     combination.put(object.toString(), -1);
                 }
             });
-            TextView tv_no = new TextView(RecipieCreateActivity.this);
+            TextView tv_no = new TextView(RecipieCreateOthersActivity.this);
             LinearLayout.LayoutParams layoutParams = new LinearLayout.LayoutParams(
                     ViewGroup.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT);
             layoutParams.setMargins(20, 10, 10, 10); //substitute parameters for left, top, right, bottom
@@ -319,7 +315,7 @@ public class RecipieCreateActivity extends AppCompatActivity {
                 String code = ((List<?>) object).get(i).toString().replaceAll("\\s+","");
                 String name = mainSnapshot.child(code.substring(0,2)).child("item").child(code.substring(2,3)).child("item").child(code.substring(3,5)).child("name").getValue().toString();
                 list.add(name);
-                RadioButton radioButton = new RadioButton(RecipieCreateActivity.this);
+                RadioButton radioButton = new RadioButton(RecipieCreateOthersActivity.this);
                 radioButton.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
                     @Override
                     public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
@@ -328,7 +324,7 @@ public class RecipieCreateActivity extends AppCompatActivity {
                         }
                     }
                 });
-                TextView tv = new TextView(RecipieCreateActivity.this);
+                TextView tv = new TextView(RecipieCreateOthersActivity.this);
                 layoutParams.setMargins(20, 10, 10, 10); //substitute parameters for left, top, right, bottom
                 tv.setLayoutParams(layoutParams);
                 tv.setText(name);
@@ -339,13 +335,13 @@ public class RecipieCreateActivity extends AppCompatActivity {
 
                 radioGroup.addView(radioButton,i +1);
             }
-            LinearLayout wrapper = new LinearLayout(RecipieCreateActivity.this);
+            LinearLayout wrapper = new LinearLayout(RecipieCreateOthersActivity.this);
             wrapper.setLayoutParams(new LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT));
             wrapper.setOrientation(LinearLayout.HORIZONTAL);
             wrapper.addView(ll);
             wrapper.addView(radioGroup);
             option_wrapper.addView(wrapper);
-            View view = new View(RecipieCreateActivity.this);
+            View view = new View(RecipieCreateOthersActivity.this);
             view.setLayoutParams(new LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, 1));
             view.setBackgroundColor(getResources().getColor(R.color.black));
             option_wrapper.addView(view);
@@ -396,8 +392,8 @@ public class RecipieCreateActivity extends AppCompatActivity {
 //            checkbox_holder.addView(cb);
         } else {
             String code = String.valueOf(object);
-            QuantityView qv = new QuantityView(RecipieCreateActivity.this);
-            CheckBox cb = new CheckBox(RecipieCreateActivity.this);
+            QuantityView qv = new QuantityView(RecipieCreateOthersActivity.this);
+            CheckBox cb = new CheckBox(RecipieCreateOthersActivity.this);
             cb.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
                 @Override
                 public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
@@ -429,7 +425,7 @@ public class RecipieCreateActivity extends AppCompatActivity {
                 }
             });
             cb.setButtonTintList(colorStateList); // set the color tint lis
-            TextView tv = new TextView(RecipieCreateActivity.this);
+            TextView tv = new TextView(RecipieCreateOthersActivity.this);
             LinearLayout.LayoutParams layoutParams = new LinearLayout.LayoutParams(
                     LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT);
             layoutParams.setMargins(20, 10, 1 + 0, 10); //substitute parameters for left, top, right, bottom

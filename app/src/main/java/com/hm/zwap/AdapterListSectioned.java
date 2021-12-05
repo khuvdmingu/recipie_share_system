@@ -13,6 +13,7 @@ import com.hm.zwap.utils.Tools;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Locale;
 
 public class AdapterListSectioned extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
 
@@ -20,6 +21,7 @@ public class AdapterListSectioned extends RecyclerView.Adapter<RecyclerView.View
     private final int VIEW_SECTION = 0;
 
     private List<Thumbnail> items = new ArrayList<>();
+    private ArrayList<Thumbnail> arrayList;
     private Context ctx;
     private OnItemClickListener mOnItemClickListener;
 
@@ -34,6 +36,8 @@ public class AdapterListSectioned extends RecyclerView.Adapter<RecyclerView.View
     public AdapterListSectioned(Context context, List<Thumbnail> items) {
         this.items = items;
         ctx = context;
+        arrayList = new ArrayList<Thumbnail>();
+        arrayList.addAll(items);
     }
 
     public class OriginalViewHolder extends RecyclerView.ViewHolder {
@@ -110,6 +114,22 @@ public class AdapterListSectioned extends RecyclerView.Adapter<RecyclerView.View
     public void insertItem(int index, Thumbnail people){
         items.add(index, people);
         notifyItemInserted(index);
+    }
+    public void filter(String charText) {
+        charText = charText.toLowerCase(Locale.getDefault());
+        items.clear();
+        if (charText.length() == 0) {
+            items.addAll(arrayList);
+        } else {
+            for (Thumbnail data : arrayList) {
+                String name = data.name;
+                String description = data.description;
+                if (name.toLowerCase().contains(charText) || description.toLowerCase().contains(charText)) {
+                    items.add(data);
+                }
+            }
+        }
+        notifyDataSetChanged();
     }
 
 }

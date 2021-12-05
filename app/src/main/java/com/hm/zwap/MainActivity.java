@@ -4,11 +4,14 @@ import android.app.ProgressDialog;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -37,13 +40,15 @@ public class MainActivity extends AppCompatActivity {
     private RecyclerView recyclerView;
     private AdapterListSectioned mAdapter;
     DatabaseReference reference;
-    List<Thumbnail> items = new ArrayList<>();;
+    List<Thumbnail> items = new ArrayList<>();
+    EditText search;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_grid_caller);
         parent_view = findViewById(android.R.id.content);
         Button createBtn = findViewById(R.id.createBtn);
+        search = (EditText) findViewById(R.id.search_text);
         createBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -126,6 +131,24 @@ public class MainActivity extends AppCompatActivity {
 
             }
         });
+
+        search.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+                mAdapter.filter(s.toString());
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+
+            }
+        });
+
 
 
 
