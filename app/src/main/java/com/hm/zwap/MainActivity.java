@@ -56,9 +56,7 @@ public class MainActivity extends AppCompatActivity {
                 startActivity(intent);
             }
         });
-
         initComponent();
-
         Tools.setSystemBarColor(this);
     }
 
@@ -68,12 +66,8 @@ public class MainActivity extends AppCompatActivity {
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         recyclerView.setHasFixedSize(true);
 
-
         FirebaseDatabase database = FirebaseDatabase.getInstance();
-
-
         reference = database.getReference().child("recipies");
-
         final ProgressDialog progressDialog = new ProgressDialog(this);
         progressDialog.setMessage("레시피 가져오는 중...");
         progressDialog.setProgressStyle(ProgressDialog.STYLE_SPINNER);
@@ -99,14 +93,10 @@ public class MainActivity extends AppCompatActivity {
                                 mAdapter.notifyDataSetChanged();
                             }
                         });
-
                     } else {
                         Thumbnail tb = new Thumbnail(dataSnapshot1.child("title").getValue().toString(), dataSnapshot1.child("description").getValue().toString(), dataSnapshot1.child("img").getValue().toString());
                         items.add(tb);
-
                     }
-
-
                 }
 
                 mAdapter = new AdapterListSectioned(getApplicationContext(), items);

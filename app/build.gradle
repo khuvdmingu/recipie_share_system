@@ -51,5 +51,9 @@ dependencies {
 
     implementation 'com.asksira.android:dropdownview:1.1.1'
     implementation 'com.andkulikov:transitionseverywhere:2.1.0'
+    //ted permission
+    implementation "gun0912.ted:tedpermission:2.1.0"
+
+    api 'com.theartofdev.edmodo:android-image-cropper:2.8.+'
 
 }

@@ -8,6 +8,14 @@
     android:orientation="vertical"
     android:theme="@style/AppTheme.Material">
 
+    <ImageView
+        android:id="@+id/imageView"
+        android:layout_width="200dp"
+        android:layout_height="200dp"
+        android:layout_margin="20dp"
+        app:srcCompat="@drawable/ic_add"
+        app:tint="@color/grey_10" />
+
     <androidx.core.widget.NestedScrollView
         android:id="@+id/nested_scroll_view"
         android:layout_width="match_parent"
