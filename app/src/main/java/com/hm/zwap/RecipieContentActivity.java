@@ -106,43 +106,52 @@ public class RecipieContentActivity extends AppCompatActivity {
 
                         try {
                             JSONObject jsonObject = new JSONObject(jsonString) ;
-                            Log.d("성공인가", "onDataChange: " + jsonObject.getJSONArray("combination").get(0));
-                            for (int i = 0; i < jsonObject.getJSONArray("combination").length(); i++) {
-                                String item = jsonObject.getJSONArray("combination").get(i).toString();
+                            String first = jsonObject.getJSONArray("combination").get(0).toString();
 
-                                int j = i;
+                            if (first.equals("custom")) {
+                                TextView tv = new TextView(getApplicationContext());
+                                tv.setText(jsonObject.getJSONArray("combination").get(1).toString());
+                                tv.setTextSize(16);
+                                combinationLayout.addView(tv);
+                            } else {
+                                for (int i = 0; i < jsonObject.getJSONArray("combination").length(); i++) {
+                                    String item = jsonObject.getJSONArray("combination").get(i).toString();
 
-                                reference_item = database.getReference().child("item").child(item.substring(0,2)).child("item").child(item.substring(2,3)).child("item").child(item.substring(3)).child("name");
-                                reference_item.addValueEventListener(new ValueEventListener() {
-                                    @Override
-                                    public void onDataChange(@NonNull DataSnapshot snapshot) {
-                                        //Log.d("인가", "onDataChange: " + snapshot.getValue().toString());
-                                        LinearLayout ll = new LinearLayout(getApplicationContext());
-                                        ll.setOrientation(LinearLayout.HORIZONTAL);
-                                        if (j != 0) {
-                                            TextView plus = new TextView(getApplicationContext());
-                                            plus.setText("+ ");
-                                            plus.setTextSize(20);
-                                            plus.setTypeface(Typeface.DEFAULT_BOLD);
-                                            plus.setTextColor(ContextCompat.getColor(getApplicationContext(), R.color.colorPrimary));
-                                            ll.addView(plus);
+                                    int j = i;
+
+                                    reference_item = database.getReference().child("item").child(item.substring(0,2)).child("item").child(item.substring(2,3)).child("item").child(item.substring(3)).child("name");
+                                    reference_item.addValueEventListener(new ValueEventListener() {
+                                        @Override
+                                        public void onDataChange(@NonNull DataSnapshot snapshot) {
+                                            //Log.d("인가", "onDataChange: " + snapshot.getValue().toString());
+                                            LinearLayout ll = new LinearLayout(getApplicationContext());
+                                            ll.setOrientation(LinearLayout.HORIZONTAL);
+                                            if (j != 0) {
+                                                TextView plus = new TextView(getApplicationContext());
+                                                plus.setText("+ ");
+                                                plus.setTextSize(20);
+                                                plus.setTypeface(Typeface.DEFAULT_BOLD);
+                                                plus.setTextColor(ContextCompat.getColor(getApplicationContext(), R.color.colorPrimary));
+                                                ll.addView(plus);
+                                            }
+                                            TextView tv = new TextView(getApplicationContext());
+                                            tv.setText(snapshot.getValue().toString());
+                                            tv.setTextSize(16);
+
+                                            ll.addView(tv);
+                                            combinationLayout.addView(ll);
+
                                         }
-                                        TextView tv = new TextView(getApplicationContext());
-                                        tv.setText(snapshot.getValue().toString());
-                                        tv.setTextSize(16);
 
-                                        ll.addView(tv);
-                                        combinationLayout.addView(ll);
+                                        @Override
+                                        public void onCancelled(@NonNull DatabaseError error) {
 
-                                    }
+                                        }
+                                    });
 
-                                    @Override
-                                    public void onCancelled(@NonNull DatabaseError error) {
-
-                                    }
-                                });
-
+                                }
                             }
+
 
                             } catch (JSONException e) {
                             e.printStackTrace();

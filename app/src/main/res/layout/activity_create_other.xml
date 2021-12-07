@@ -59,8 +59,7 @@
                 app:boxBackgroundColor="@color/transparent"
                 app:errorEnabled="true"
                 app:errorIconDrawable="@drawable/ic_error"
-                app:errorIconTint="@color/colorPrimary"
-                app:helperText="*필수항목">
+                app:errorIconTint="@color/colorPrimary">
 
                 <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/input_text_title"
@@ -70,41 +69,15 @@
 
             </com.google.android.material.textfield.TextInputLayout>
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_margin="@dimen/spacing_large"
-                android:text="브랜드 선택"
-                android:textAppearance="@style/TextAppearance.MaterialComponents.Headline6"
-                android:textColor="@color/colorPrimary" />
-
-            <com.google.android.material.chip.ChipGroup
-                android:id="@+id/brand_chip_group"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginHorizontal="@dimen/spacing_middle"
-                app:singleSelection="true">
-
-
-            </com.google.android.material.chip.ChipGroup>
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_margin="@dimen/spacing_large"
-                android:text="베이스"
+                android:text="조합"
                 android:textAppearance="@style/TextAppearance.MaterialComponents.Headline6"
                 android:textColor="@color/colorPrimary" />
 
-            <com.google.android.material.chip.ChipGroup
-                android:id="@+id/category_chip_group"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginHorizontal="@dimen/spacing_middle"
-                app:singleSelection="false">
-
-
-            </com.google.android.material.chip.ChipGroup>
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -113,24 +86,12 @@
                 android:orientation="horizontal">
 
 
-                <LinearLayout
-                    android:id="@+id/list_holder"
-                    android:layout_width="0dp"
-                    android:layout_weight="6"
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/input_text_combination"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:orientation="vertical">
-
-
-                </LinearLayout>
-
-                <RadioGroup
-                    android:layout_width="0dp"
-                    android:layout_weight="1"
-                    android:id="@+id/radio_holder"
-                    android:orientation="vertical"
-                    android:layout_height="wrap_content">
-
-                </RadioGroup>
+                    android:hint="조합내용"
+                    android:text=""/>
 
             </LinearLayout>
 
@@ -139,7 +100,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_margin="@dimen/spacing_large"
-                android:text="옵션"
+                android:text="설명"
                 android:textAppearance="@style/TextAppearance.MaterialComponents.Headline6"
                 android:textColor="@color/colorPrimary" />
 
@@ -151,33 +112,17 @@
                 android:orientation="horizontal">
 
 
-                <LinearLayout
-                    android:id="@+id/option_holder"
-                    android:layout_width="0dp"
-                    android:layout_weight="2"
-                    android:layout_gravity="start"
-                    android:gravity="start"
-                    android:layout_height="wrap_content"
-                    android:orientation="vertical">
-
-                </LinearLayout>
-
                 <View
                     android:layout_width="0dp"
                     android:layout_height="0dp"
                     android:layout_weight="1"/>
 
-                <LinearLayout
-                    android:layout_width="0dp"
-                    android:layout_weight="1"
-                    android:layout_gravity="end"
-                    android:gravity="end"
-
-                    android:id="@+id/checkBox_holder"
-                    android:orientation="vertical"
-                    android:layout_height="wrap_content">
-
-                </LinearLayout>
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/input_text_description"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="조합설명"
+                    android:text=""/>
 
 
 

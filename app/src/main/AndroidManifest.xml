@@ -42,14 +42,14 @@
             android:screenOrientation="portrait">
         </activity>
         <activity
+            android:name="com.hm.zwap.RecipieOthersCreateActivity"
+            android:screenOrientation="portrait">
+        </activity>
+        <activity
             android:name="com.hm.zwap.RecipieContentActivity"
             android:screenOrientation="portrait">
         </activity>
-        <!-- crop activity -->
-        <activity
-            android:name="com.soundcloud.android.crop.CropImageActivity"
-            android:screenOrientation="portrait"
-            android:theme="@style/Theme.AppCompat.NoActionBar" />
+
     </application>
 
 

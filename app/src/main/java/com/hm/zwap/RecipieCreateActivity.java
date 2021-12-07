@@ -26,6 +26,7 @@ import android.widget.CheckBox;
 import android.widget.CompoundButton;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.ProgressBar;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.TextView;
@@ -89,6 +90,8 @@ public class RecipieCreateActivity extends AppCompatActivity {
     HashMap<String,Object> combination;
     TextInputEditText title;
     ImageView imageView;
+    String current_img_url ;
+    ProgressBar progressBar;
     private static final String CAPTURE_PATH = "/zap";
     private static final int PICK_FROM_CAMERA = 0;
     private static final int PICK_FROM_ALBUM = 1;
@@ -115,6 +118,7 @@ public class RecipieCreateActivity extends AppCompatActivity {
         checkbox_holder = findViewById(R.id.checkBox_holder);
         create = findViewById(R.id.create_recipie);
         imageView = findViewById(R.id.imageView);
+        progressBar = findViewById(R.id.progressbar);
         initComponent();
         tedPermission();
         //chip.isChecked()
@@ -743,6 +747,9 @@ public class RecipieCreateActivity extends AppCompatActivity {
     }
 
     public void imageUpload(Uri file){
+        imageView.setVisibility(View.INVISIBLE);
+        progressBar.setVisibility(View.VISIBLE);
+
         FirebaseStorage storage = FirebaseStorage.getInstance();
         StorageReference storageRef = storage.getReference();
         String filename = System.currentTimeMillis() + ".jpg";
@@ -756,9 +763,6 @@ public class RecipieCreateActivity extends AppCompatActivity {
         }).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
             @Override
             public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
-                // taskSnapshot.getMetadata() contains file metadata such as size, content-type, etc.
-                // ...
-
 
                 taskSnapshot.getMetadata().getReference().getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
                     @Override
@@ -766,7 +770,9 @@ public class RecipieCreateActivity extends AppCompatActivity {
                         String url = uri.toString();
                         Log.d(TAG, "onSuccess:다운로드 url" + url);
                         Glide.with(getApplicationContext()).load(url).into(imageView);
-
+                        progressBar.setVisibility(View.INVISIBLE);
+                        imageView.setVisibility(View.VISIBLE);
+                        current_img_url = url;
                     }
                 }).addOnFailureListener(new OnFailureListener() {
                     @Override
@@ -798,6 +804,6 @@ public class RecipieCreateActivity extends AppCompatActivity {
             combination_list.add(entry.getValue().toString());
         }
     }
-    mDatabase.push().setValue(new Recipies(title.getText().toString(), "설명", "http://coffee.dankook.ac.kr/html_portlet_repositories/images/ExtImgFile/10158/1766093/1952287/42012.png", 0,0,0, combination_list));
+    mDatabase.push().setValue(new Recipies(title.getText().toString(), "설명", current_img_url, 0,0,0, combination_list, brandCode));
     }
 }
