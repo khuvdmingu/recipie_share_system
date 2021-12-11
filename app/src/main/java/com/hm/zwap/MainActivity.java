@@ -34,6 +34,7 @@ import com.hm.zwap.utils.Tools;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -108,14 +109,14 @@ public class MainActivity extends AppCompatActivity {
                         ref.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
                             @Override
                             public void onSuccess(Uri uri) {
-                                Thumbnail tb = new Thumbnail(dataSnapshot1.child("title").getValue().toString(), dataSnapshot1.child("description").getValue().toString(), uri.toString());
+                                Thumbnail tb = new Thumbnail(dataSnapshot1.child("title").getValue().toString(), dataSnapshot1.child("description").getValue().toString(), uri.toString(), dataSnapshot1.child("brandCode").getValue().toString());
                                 items.add(tb);
                                 Log.d("URI", "onSuccess: " + uri.toString());
                                 mAdapter.notifyDataSetChanged();
                             }
                         });
                     } else {
-                        Thumbnail tb = new Thumbnail(dataSnapshot1.child("title").getValue().toString(), dataSnapshot1.child("description").getValue().toString(), dataSnapshot1.child("img").getValue().toString());
+                        Thumbnail tb = new Thumbnail(dataSnapshot1.child("title").getValue().toString(), dataSnapshot1.child("description").getValue().toString(), dataSnapshot1.child("img").getValue().toString(), dataSnapshot1.child("brandCode").getValue().toString());
                         items.add(tb);
                     }
                 }
@@ -185,11 +186,31 @@ public class MainActivity extends AppCompatActivity {
     public void setUi(String tab) {
         switch(tab) {
             case "전체":
-
+                mAdapter.resetItems(items);
+                createBtn.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        Intent intent = new Intent(MainActivity.this, RecipieCreateActivity.class);
+                        startActivity(intent);
+                    }
+                });
                 break;
             case "스타벅스":
+                List<Thumbnail> result = items.stream().filter(e -> e.brandCode.equals("ST")).collect(Collectors.toList());
+                mAdapter.resetItems(result);
+                createBtn.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        Intent intent = new Intent(MainActivity.this, RecipieCreateActivity.class);
+                        startActivity(intent);
+                    }
+                });
+
+
                 break;
             default:
+                List<Thumbnail> def = items.stream().filter(e -> e.brandCode.equals("others")).collect(Collectors.toList());
+                mAdapter.resetItems(def);
                 createBtn.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {

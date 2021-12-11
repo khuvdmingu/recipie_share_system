@@ -161,9 +161,6 @@ public class RecipieContentActivity extends AppCompatActivity {
 
                 }
 
-
-
-
                 progressDialog.dismiss();
             }
 

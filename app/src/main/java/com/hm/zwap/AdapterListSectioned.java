@@ -9,6 +9,7 @@ import android.widget.TextView;
 
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.hm.zwap.Model.Item;
 import com.hm.zwap.utils.Tools;
 
 import java.util.ArrayList;
@@ -129,6 +130,11 @@ public class AdapterListSectioned extends RecyclerView.Adapter<RecyclerView.View
                 }
             }
         }
+        notifyDataSetChanged();
+    }
+
+    public void resetItems(List<Thumbnail> items){
+        this.items = items;
         notifyDataSetChanged();
     }
 

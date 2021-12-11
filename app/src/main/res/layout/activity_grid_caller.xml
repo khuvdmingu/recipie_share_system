@@ -94,7 +94,7 @@
                 android:id="@+id/tab_contacts"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="브랜드2" />
+                android:text="기타" />
 
         </com.google.android.material.tabs.TabLayout>
 
