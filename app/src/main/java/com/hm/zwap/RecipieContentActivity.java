@@ -8,6 +8,7 @@ import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
@@ -49,6 +50,8 @@ public class RecipieContentActivity extends AppCompatActivity {
     TextView description, goodCount, sosoCount, badCount, titleView;
     ImageView mainImage;
     LinearLayout combinationLayout;
+    ImageButton goodBtn, badBtn, sosoBtn;
+    String key;
 
 
     @Override
@@ -63,6 +66,32 @@ public class RecipieContentActivity extends AppCompatActivity {
         goodCount = findViewById(R.id.goodCount);
         sosoCount = findViewById(R.id.sosoCount);
         badCount = findViewById(R.id.badCount);
+        goodBtn = findViewById(R.id.goodBtn);
+        badBtn = findViewById(R.id.badBtn);
+        sosoBtn = findViewById(R.id.sosoBtn);
+
+        goodBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                update("good");
+            }
+        });
+
+        badBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                update("bad");
+            }
+        });
+
+        sosoBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                update("soso");
+            }
+        });
+
         mainImage = findViewById(R.id.main_image);
         Glide.with(getApplicationContext())
                 .load(url)
@@ -72,6 +101,27 @@ public class RecipieContentActivity extends AppCompatActivity {
         initComponent(title);
 
         Tools.setSystemBarColor(this);
+    }
+
+    public void update(String btnName) {
+        switch(btnName) {
+            case "good":
+                reference.child(key).child("good").setValue(Integer.parseInt(goodCount.getText().toString())+1);
+                goodCount.setText(String.valueOf(Integer.parseInt(goodCount.getText().toString()) +1));
+                break;
+            case "soso":
+                reference.child(key).child("soso").setValue(Integer.parseInt(sosoCount.getText().toString())+1);
+                sosoCount.setText(String.valueOf(Integer.parseInt(sosoCount.getText().toString()) +1));
+
+
+                break;
+            case "bad":
+                reference.child(key).child("bad").setValue(Integer.parseInt(badCount.getText().toString())+1);
+                badCount.setText(String.valueOf(Integer.parseInt(badCount.getText().toString()) +1));
+                break;
+            default:
+                break;
+        }
     }
 
 
@@ -93,7 +143,7 @@ public class RecipieContentActivity extends AppCompatActivity {
 
                 for(DataSnapshot dataSnapshot1 : dataSnapshot.getChildren()){
                     if(dataSnapshot1.child("title").getValue().toString().equals(title)) {
-
+                        key = dataSnapshot1.getKey();
 
                         description.setText(dataSnapshot1.child("description").getValue().toString());
                         badCount.setText(dataSnapshot1.child("bad").getValue().toString());
