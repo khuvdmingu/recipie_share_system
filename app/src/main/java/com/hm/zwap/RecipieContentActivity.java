@@ -50,7 +50,8 @@ public class RecipieContentActivity extends AppCompatActivity {
     TextView description, goodCount, sosoCount, badCount, titleView;
     ImageView mainImage;
     LinearLayout combinationLayout;
-    ImageButton goodBtn, badBtn, sosoBtn;
+    ImageButton goodBtn, badBtn, sosoBtn, backBtn;
+
     String key;
 
 
@@ -69,6 +70,15 @@ public class RecipieContentActivity extends AppCompatActivity {
         goodBtn = findViewById(R.id.goodBtn);
         badBtn = findViewById(R.id.badBtn);
         sosoBtn = findViewById(R.id.sosoBtn);
+
+        backBtn = findViewById(R.id.back_arrow);
+
+        backBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                finish();
+            }
+        });
 
         goodBtn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -97,9 +107,7 @@ public class RecipieContentActivity extends AppCompatActivity {
                 .load(url)
                 .into(mainImage);
         combinationLayout = findViewById(R.id.combination_holder);
-
         initComponent(title);
-
         Tools.setSystemBarColor(this);
     }
 
@@ -112,8 +120,6 @@ public class RecipieContentActivity extends AppCompatActivity {
             case "soso":
                 reference.child(key).child("soso").setValue(Integer.parseInt(sosoCount.getText().toString())+1);
                 sosoCount.setText(String.valueOf(Integer.parseInt(sosoCount.getText().toString()) +1));
-
-
                 break;
             case "bad":
                 reference.child(key).child("bad").setValue(Integer.parseInt(badCount.getText().toString())+1);

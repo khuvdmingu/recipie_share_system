@@ -24,6 +24,7 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.CompoundButton;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ProgressBar;
@@ -92,6 +93,7 @@ public class RecipieCreateActivity extends AppCompatActivity {
     ImageView imageView;
     String current_img_url ;
     ProgressBar progressBar;
+    ImageButton backBtn;
     private static final String CAPTURE_PATH = "/zap";
     private static final int PICK_FROM_CAMERA = 0;
     private static final int PICK_FROM_ALBUM = 1;
@@ -119,6 +121,13 @@ public class RecipieCreateActivity extends AppCompatActivity {
         create = findViewById(R.id.create_recipie);
         imageView = findViewById(R.id.imageView);
         progressBar = findViewById(R.id.progressbar);
+        backBtn = findViewById(R.id.back_create);
+        backBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                finish();
+            }
+        });
         initComponent();
         tedPermission();
         //chip.isChecked()
@@ -151,32 +160,10 @@ public class RecipieCreateActivity extends AppCompatActivity {
                         }
         );
 
-        TextInputLayout input_layout_username = findViewById(R.id.input_layout_username);
-        //input_layout_username.setError("제목은 20자 이내로 해주세요.");
+
 
         title = findViewById(R.id.input_text_title);
-        title.addTextChangedListener(new TextWatcher() {
-            @Override
-            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
 
-            }
-
-            @Override
-            public void onTextChanged(CharSequence s, int start, int before, int count) {
-
-            }
-
-            @Override
-            public void afterTextChanged(Editable s) {
-                if(s.toString().trim().length() > 20){
-                    input_layout_username.setErrorEnabled(true);
-                    input_layout_username.setError("제목은 20자 이내로 해주세요.");
-                } else {
-                    input_layout_username.setErrorEnabled(false);
-                    input_layout_username.setError("");
-                }
-            }
-        });
 
         database = FirebaseDatabase.getInstance();
 
@@ -279,10 +266,7 @@ public class RecipieCreateActivity extends AppCompatActivity {
                             }
                         });
                         categoryGroup.addView(chip);
-
                     }
-
-
                 }
 
     }
@@ -406,51 +390,8 @@ public class RecipieCreateActivity extends AppCompatActivity {
             view.setLayoutParams(new LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, 1));
             view.setBackgroundColor(getResources().getColor(R.color.black));
             option_wrapper.addView(view);
-//            DropDownView dd = new DropDownView(RecipieCreateActivity.this);
-//            //dd.setLayoutParams(new ViewGroup.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT));
-//            dd.setDropDownListItem(list);
-//
-//            ViewGroup.LayoutParams lp =dd.getFilterArrow().getLayoutParams();
-//            lp.width = 0;
-//            dd.getFilterArrow().setLayoutParams(lp);
-//            dd.getFilterContainer().setHorizontalGravity(Gravity.LEFT);
-//            dd.getFilterTextView().setTextAlignment(View.TEXT_ALIGNMENT_TEXT_START);
-//            dd.getFilterTextView().setGravity(Gravity.LEFT);
-//            dd.getFilterTextView().setText(list.get(0));
-//            dd.getFilterTextView().setTextColor(getResources().getColor(R.color.grey_600));
-//            dd.setDropdownItemGravity(Gravity.LEFT);
-//            dd.setEnabled(false);
-//            dd.setOnSelectionListener(new OnDropDownSelectionListener() {
-//                @Override
-//                public void onItemSelected(DropDownView view, int position) {
-//                    ((List<?>) object).get(position).toString().replaceAll("\\s+","");
-//
-//                    //Do something with the selected position
-//                    //If position is -1, it means nothing is selected. This should happen only if deselectable is true
-//                }
-//            });
 
 
-//            CheckBox cb = new CheckBox(RecipieCreateActivity.this);
-//            cb.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
-//                @Override
-//                public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-//                    if (isChecked) {
-//                        dd.setEnabled(true);
-//                        dd.expand(true);
-//                        dd.getFilterTextView().setTextColor(getResources().getColor(R.color.black));
-//
-//                    } else {
-//                        dd.setEnabled(false);
-//                        dd.collapse(true);
-//                        dd.getFilterTextView().setTextColor(getResources().getColor(R.color.grey_600));
-//
-//                    }
-//                }
-//            });
-//            cb.setButtonTintList(colorStateList);
-//            option_holder.addView(dd);
-//            checkbox_holder.addView(cb);
         } else {
             String code = String.valueOf(object);
             QuantityView qv = new QuantityView(RecipieCreateActivity.this);

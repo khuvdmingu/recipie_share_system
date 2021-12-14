@@ -138,4 +138,8 @@ public class AdapterListSectioned extends RecyclerView.Adapter<RecyclerView.View
         notifyDataSetChanged();
     }
 
+    public List<Thumbnail> getItems(){
+        return this.items;
+    }
+
 }

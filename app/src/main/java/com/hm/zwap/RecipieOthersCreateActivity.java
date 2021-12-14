@@ -22,6 +22,7 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.CompoundButton;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ProgressBar;
@@ -81,6 +82,7 @@ public class RecipieOthersCreateActivity extends AppCompatActivity {
     ImageView imageView;
     String current_img_url ;
     ProgressBar progressBar;
+    ImageButton backBtn;
     private static final String CAPTURE_PATH = "/zap";
     private static final int PICK_FROM_CAMERA = 0;
     private static final int PICK_FROM_ALBUM = 1;
@@ -101,6 +103,7 @@ public class RecipieOthersCreateActivity extends AppCompatActivity {
         create = findViewById(R.id.create_recipie);
         imageView = findViewById(R.id.imageView);
         progressBar = findViewById(R.id.progressbar);
+        backBtn = findViewById(R.id.back_create_other);
         initComponent();
         tedPermission();
         create.setOnClickListener(new View.OnClickListener() {
@@ -116,37 +119,20 @@ public class RecipieOthersCreateActivity extends AppCompatActivity {
                 onPicClick();
             }
         });
+        backBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                finish();
+            }
+        });
     }
 
     private void initComponent() {
-        TextInputLayout input_layout_username = findViewById(R.id.input_layout_username);
-        //input_layout_username.setError("제목은 20자 이내로 해주세요.");
 
         title = findViewById(R.id.input_text_title);
         combination = findViewById(R.id.input_text_combination);
         description = findViewById(R.id.input_text_description);
-        title.addTextChangedListener(new TextWatcher() {
-            @Override
-            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
 
-            }
-
-            @Override
-            public void onTextChanged(CharSequence s, int start, int before, int count) {
-
-            }
-
-            @Override
-            public void afterTextChanged(Editable s) {
-                if(s.toString().trim().length() > 20){
-                    input_layout_username.setErrorEnabled(true);
-                    input_layout_username.setError("제목은 20자 이내로 해주세요.");
-                } else {
-                    input_layout_username.setErrorEnabled(false);
-                    input_layout_username.setError("");
-                }
-            }
-        });
 
         database = FirebaseDatabase.getInstance();
 
