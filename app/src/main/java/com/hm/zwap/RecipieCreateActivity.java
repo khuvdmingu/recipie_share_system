@@ -89,7 +89,7 @@ public class RecipieCreateActivity extends AppCompatActivity {
     Button create;
     String current_base;
     HashMap<String,Object> combination;
-    TextInputEditText title;
+    TextInputEditText title, description;
     ImageView imageView;
     String current_img_url ;
     ProgressBar progressBar;
@@ -163,6 +163,8 @@ public class RecipieCreateActivity extends AppCompatActivity {
 
 
         title = findViewById(R.id.input_text_title);
+        description = findViewById(R.id.input_text_description);
+
 
 
         database = FirebaseDatabase.getInstance();
@@ -745,6 +747,6 @@ public class RecipieCreateActivity extends AppCompatActivity {
             combination_list.add(entry.getValue().toString());
         }
     }
-    mDatabase.push().setValue(new Recipies(title.getText().toString(), "설명", current_img_url, 0,0,0, combination_list, brandCode));
+    mDatabase.push().setValue(new Recipies(title.getText().toString(), description.getText().toString(), current_img_url, 0,0,0, combination_list, brandCode));
     }
 }
